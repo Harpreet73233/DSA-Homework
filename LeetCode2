@@ -1,0 +1,71 @@
+import java.math.BigInteger;
+
+public class LeetCode2 {
+
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+
+        StringBuilder num1 = new StringBuilder();
+        StringBuilder num2 = new StringBuilder();
+
+        // Convert l1 to number
+        while (l1 != null) {
+            num1.append(l1.val);
+            l1 = l1.next;
+        }
+
+        // Convert l2 to number
+        while (l2 != null) {
+            num2.append(l2.val);
+            l2 = l2.next;
+        }
+
+        // Reverse because linked list stores digits backwards
+        BigInteger n1 = new BigInteger(num1.reverse().toString());
+        BigInteger n2 = new BigInteger(num2.reverse().toString());
+
+        BigInteger sum = n1.add(n2);
+
+        // Convert sum back to linked list
+        String result = sum.toString();
+
+        ListNode dummy = new ListNode(0);
+        ListNode temp = dummy;
+
+        for (int i = result.length() - 1; i >= 0; i--) {
+            temp.next = new ListNode(result.charAt(i) - '0');
+            temp = temp.next;
+        }
+
+        return dummy.next;
+    }
+
+    public static void main(String[] args) {
+
+        LeetCode2 obj = new LeetCode2();
+
+        ListNode l1 = new ListNode(2);
+        l1.next = new ListNode(4);
+        l1.next.next = new ListNode(3);
+
+        ListNode l2 = new ListNode(5);
+        l2.next = new ListNode(6);
+        l2.next.next = new ListNode(4);
+
+        ListNode result = obj.addTwoNumbers(l1, l2);
+
+        while (result != null) {
+            System.out.print(result.val + " ");
+            result = result.next;
+        }
+    }
+
+    // Linked List Node
+    static class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int val) {
+            this.val = val;
+        }
+    }
+}
