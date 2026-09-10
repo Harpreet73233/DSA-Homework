@@ -26,7 +26,6 @@ public class LeetCode86 {
             temp = next;
         }
 
-        // Connect both lists
         small.next = bigDummy.next;
 
         return smallDummy.next;
