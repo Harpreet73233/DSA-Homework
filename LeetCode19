@@ -1,0 +1,64 @@
+public class LeetCode19 {
+
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+
+        // Count total nodes
+        int count = 0;
+        ListNode temp = head;
+
+        while (temp != null) {
+            count++;
+            temp = temp.next;
+        }
+
+        // Position of node to remove from beginning
+        int position = count - n + 1;
+
+        // If first node needs to be removed
+        if (position == 1) {
+            return head.next;
+        }
+
+        // Move to node before the one to remove
+        temp = head;
+
+        for (int i = 1; i < position - 1; i++) {
+            temp = temp.next;
+        }
+
+        // Remove node
+        temp.next = temp.next.next;
+
+        return head;
+    }
+
+    public static void main(String[] args) {
+
+        LeetCode19 obj = new LeetCode19();
+
+        ListNode head = new ListNode(1);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(3);
+        head.next.next.next = new ListNode(4);
+        head.next.next.next.next = new ListNode(5);
+
+        int n = 2;
+
+        ListNode result = obj.removeNthFromEnd(head, n);
+
+        while (result != null) {
+            System.out.print(result.val + " ");
+            result = result.next;
+        }
+    }
+
+    // Linked List Node
+    static class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int val) {
+            this.val = val;
+        }
+    }
+}
