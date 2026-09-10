@@ -15,7 +15,6 @@ public class LeetCode237 {
         head.next.next = new ListNode(1);
         head.next.next.next = new ListNode(9);
 
-        // Node to delete = 5
         ListNode node = head.next;
 
         obj.deleteNode(node);
