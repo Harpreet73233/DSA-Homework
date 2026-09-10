@@ -1,0 +1,44 @@
+import java.util.*;
+
+public class LeetCode90 {
+
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+
+        Arrays.sort(nums);
+
+        List<List<Integer>> result = new ArrayList<>();
+
+        result.add(new ArrayList<>());
+
+        for (int num : nums) {
+
+            int size = result.size();
+
+            for (int i = 0; i < size; i++) {
+
+                List<Integer> subset =
+                    new ArrayList<>(result.get(i));
+
+                subset.add(num);
+
+                if (!result.contains(subset)) {
+                    result.add(subset);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+
+        LeetCode90 obj = new LeetCode90();
+
+        int[] nums = {1, 2, 2};
+
+        List<List<Integer>> result =
+            obj.subsetsWithDup(nums);
+
+        System.out.println(result);
+    }
+}
