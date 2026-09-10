@@ -1,0 +1,39 @@
+public class LeetCode237 {
+
+    public void deleteNode(ListNode node) {
+
+        node.val = node.next.val;
+        node.next = node.next.next;
+    }
+
+    public static void main(String[] args) {
+
+        LeetCode237 obj = new LeetCode237();
+
+        ListNode head = new ListNode(4);
+        head.next = new ListNode(5);
+        head.next.next = new ListNode(1);
+        head.next.next.next = new ListNode(9);
+
+        // Node to delete = 5
+        ListNode node = head.next;
+
+        obj.deleteNode(node);
+
+        ListNode temp = head;
+
+        while (temp != null) {
+            System.out.print(temp.val + " ");
+            temp = temp.next;
+        }
+    }
+
+    static class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int val) {
+            this.val = val;
+        }
+    }
+}
