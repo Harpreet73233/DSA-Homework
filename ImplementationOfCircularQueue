@@ -1,0 +1,49 @@
+static class CircularQueue {
+        int[] arr;
+        int front, rear, size, capacity;
+
+        CircularQueue(int capacity){
+            this.capacity = capacity;
+            arr = new int[capacity];
+            front = 0;
+            rear = -1;
+            size = 0;
+        }
+
+        void enqueue(int val){
+            if(size == capacity){
+                System.out.println("Queue is full");
+                return;
+            }
+            rear = (rear + 1) % capacity;
+            arr[rear] = val;
+            size++;
+            System.out.println("inserted " + val);
+        }
+
+        void dequeue(){
+            if(size == 0){
+                System.out.print("Queue is empty");
+                return;
+            }
+
+            System.out.println("Removed " + arr[front]);
+            front = (front + 1) % capacity;
+            size--;
+        }
+
+        void display(){
+            if(size == 0){
+                System.out.print("Queue is empty");
+                return;
+            }
+
+            System.out.println("Queue:");
+            for(int i = 0; i < size; i++){
+                int index = (front + i) % capacity;
+                System.out.print(arr[index] + " ");
+            }
+            System.out.println();
+                
+        }
+    }
