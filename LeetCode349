@@ -1,0 +1,46 @@
+class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+        int[] res = new int[1001];
+        
+        int n = nums1.length;
+        int m = nums2.length;
+
+        if(n > m){
+            for(int i = 0; i < m; i++){
+                for(int j = 0; j < n; j++){
+                    if(nums2[i] == nums1[j]){
+                        res[nums2[i]]++;
+                    }
+                }
+            }
+        } else {
+            for(int i = 0; i < n; i++){
+                for(int j = 0; j < m; j++){
+                    if(nums1[i] == nums2[j]){
+                        res[nums1[i]]++;
+                    }
+                }
+            }
+        }
+
+        int count = 0;
+
+        for(int i = 0; i < res.length; i++){
+            if(res[i] > 0){
+                count++;
+            }
+        }
+
+        int[] ans = new int[count];
+        int j = 0;
+
+        for(int i = 0; i < res.length; i++){
+            if(res[i] > 0){
+                ans[j] = i;
+                j++;
+            }
+        }
+        return ans;
+
+    }
+}
