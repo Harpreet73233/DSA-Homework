@@ -1,0 +1,33 @@
+
+class Solution {
+    public List<String> subdomainVisits(String[] cpdomains) {
+        HashMap<String, Integer> map = new HashMap<>();
+
+        for(String str : cpdomains) {
+            String[] part = str.split(" ");
+            int count = Integer.parseInt(part[0]);
+
+            String s = part[1];
+
+            while(true) {
+                map.put(s, map.getOrDefault(s, 0) + count);
+
+                int index = s.indexOf('.');
+
+                if(index == -1) {
+                    break;
+                }
+
+                s = s.substring(index + 1);
+            }
+        }
+
+        List<String> res = new ArrayList<>();
+
+        for(String d : map.keySet()) {
+            res.add(map.get(d) + " " + d);
+        }
+
+        return res;
+    }
+}
