@@ -1,0 +1,25 @@
+
+class Solution {
+    public int leastInterval(char[] tasks, int n) {
+
+        int[] freq = new int[26];
+
+        for (char ch : tasks) {
+            freq[ch - 'A']++;
+        }
+
+        Arrays.sort(freq);
+
+        int maxFreq = freq[25];
+
+        int intervals = (maxFreq - 1) * (n + 1) + 1;
+
+        for (int i = 24; i >= 0; i--) {
+            if (freq[i] == maxFreq) {
+                intervals++;
+            }
+        }
+
+        return Math.max(tasks.length, intervals);
+    }
+}
